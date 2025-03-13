@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
+    'event'
 ]
 
 MIDDLEWARE = [
@@ -78,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ai_scheduler',  # Change to your MySQL database
         'USER': 'root',
-        'PASSWORD': 'Chukwum@1231',
+        'PASSWORD': 'Chukwuma@1231',
         'HOST': 'localhost',  # Use '127.0.0.1' if needed
         'PORT': '3306',  # Default MySQL port
     }

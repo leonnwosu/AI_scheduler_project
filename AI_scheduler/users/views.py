@@ -17,6 +17,11 @@ def create_user(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-'''@app_view(['GET'])
-def get_user(request):
-'''
+@api_view(['GET'])
+def get_user(request, cemail, cpassword):
+    try:
+        User = user.objects.get(email = cemail, password_hash = cpassword )
+        serialize = userserelaizer(User)
+        return Response(serialize.data, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({'error' : str(e)}, status=status.HTTP_400_BAD_REQUEST)

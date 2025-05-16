@@ -39,6 +39,19 @@
             "name": "AI_scheduler",
             "database": "ai_scheduler",
             "username": "root"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "AI Schedule",
+            "database": "AI_Scheduler",
+            "username": "root"
         }
     ]
 }

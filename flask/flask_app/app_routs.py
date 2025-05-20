@@ -1,22 +1,28 @@
 from flask_restful import Api
-from flask import Flask,request,current_app
+from flask import Flask,request,current_app, render_template
 import MySQLdb
 from resources.login import Login
 from resources.Register import Register
 from resources.events import events,event
 import jwt
+import os
+from dotenv import load_dotenv
 
 from db import mysql
 
-app = Flask(__name__)
+
+base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
+app = Flask(__name__,template_folder=os.path.join(base_dir, 'template'))
 api = Api(app)
+
+load_dotenv()
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Chukwuma@1231'
+app.config['MYSQL_PASSWORD'] = os.getenv("MYSQLPASSWORD")
 app.config['MYSQL_DB'] = 'ai_scheduler'
-app.config['token'] = '6828043811'
-app.config['SENDGD_API_KEY'] = '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'
+app.config['token'] = os.getenv("TOKENPASS")
+app.config['SENDGD_API_KEY'] = os.getenv('SGAPIKEY')
 
 mysql.init_app(app)
 
@@ -52,8 +58,9 @@ def verify_email():
 
 @app.route("/")
 def hello_world():
-    return "<p> hello world! </p>"
+    return render_template('index.html')
+    
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, port=5000)
